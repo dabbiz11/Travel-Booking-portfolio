@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Double H Concierge | Global Luxury Travel</title>
+    <title>Double H Concierge | Global Luxury Travel</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -45,16 +45,41 @@
         .logo h1 span { color: var(--gold); }
         .logo p { font-size: 0.7rem; color: var(--gray); }
         .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { color: var(--cream); text-decoration: none; cursor: pointer; }
+        .nav-links a { color: var(--cream); text-decoration: none; cursor: pointer; transition: color 0.3s; }
         .nav-links a:hover { color: var(--gold); }
+        
+        /* Disclaimer Banner */
+        .disclaimer-banner {
+            background: linear-gradient(90deg, #0F2A3F, #1A3A4F);
+            padding: 0.6rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(198, 164, 59, 0.3);
+            position: fixed;
+            top: 70px;
+            width: 100%;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+        .disclaimer-banner p {
+            margin: 0;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .disclaimer-banner i { color: var(--gold); margin-right: 0.3rem; }
+        .disclaimer-banner strong { color: var(--gold); font-weight: 600; }
+        
         .hero {
-            min-height: 75vh;
+            min-height: 70vh;
             background: linear-gradient(135deg, rgba(10, 26, 47, 0.95), rgba(10, 26, 47, 0.85)), url('https://images.pexels.com/photos/2166711/pexels-photo-2166711.jpeg?auto=compress&cs=tinysrgb&w=1600');
             background-size: cover;
             display: flex;
             align-items: center;
             text-align: center;
-            padding-top: 80px;
+            padding-top: 140px;
         }
         .hero-content { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
         .hero-badge {
@@ -69,6 +94,7 @@
         .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
         .hero h1 span { color: var(--gold); }
         .hero p { font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem; }
+        
         .search-card {
             max-width: 1200px;
             margin: -2rem auto 3rem;
@@ -76,6 +102,8 @@
             border-radius: 20px;
             padding: 2rem;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 10;
         }
         .trip-tabs {
             display: flex;
@@ -91,8 +119,10 @@
             font-weight: 600;
             cursor: pointer;
             color: var(--gray);
+            transition: all 0.3s;
         }
         .trip-tab.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        
         .search-form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -111,6 +141,12 @@
             border: 1px solid #ddd;
             border-radius: 12px;
             font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(198, 164, 59, 0.1);
         }
         .search-btn {
             background: var(--gold);
@@ -122,8 +158,9 @@
             cursor: pointer;
             margin-top: 1rem;
             width: 100%;
+            transition: all 0.3s;
         }
-        .search-btn:hover { background: var(--gold-dark); }
+        .search-btn:hover { background: var(--gold-dark); transform: translateY(-2px); }
         .add-segment-btn {
             background: transparent;
             color: var(--gold);
@@ -133,7 +170,10 @@
             width: 100%;
             border-radius: 8px;
             cursor: pointer;
+            transition: all 0.3s;
         }
+        .add-segment-btn:hover { background: rgba(198, 164, 59, 0.1); }
+        
         .results-section {
             max-width: 1200px;
             margin: 3rem auto;
@@ -146,6 +186,8 @@
             margin-bottom: 1.5rem;
         }
         .section-header h2 span { color: var(--gold); }
+        .result-count { color: var(--gray); font-size: 0.85rem; }
+        
         .flight-card {
             background: var(--navy-light);
             border-radius: 12px;
@@ -156,9 +198,13 @@
             align-items: center;
             cursor: pointer;
             border: 1px solid rgba(198, 164, 59, 0.2);
+            transition: all 0.3s;
         }
         .flight-card:hover { border-color: var(--gold); transform: translateX(5px); }
+        .flight-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .flight-time { font-weight: 600; color: var(--gold); }
         .price-amount { font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+        .price-note { font-size: 0.7rem; color: var(--gray); margin-top: 0.2rem; }
         .book-btn {
             background: transparent;
             color: var(--gold);
@@ -166,7 +212,10 @@
             padding: 0.5rem 1.5rem;
             border-radius: 8px;
             cursor: pointer;
+            transition: all 0.3s;
         }
+        .book-btn:hover { background: var(--gold); color: var(--navy); }
+        
         .modal {
             display: none;
             position: fixed;
@@ -189,12 +238,14 @@
             max-height: 80vh;
             overflow-y: auto;
         }
-        .modal-content input, .modal-content select {
+        .modal-content h3 { color: var(--gold); margin-bottom: 1rem; }
+        .modal-content input {
             width: 100%;
             padding: 0.9rem;
             margin-bottom: 1rem;
             border: 1px solid #ddd;
             border-radius: 8px;
+            font-family: 'Inter', sans-serif;
         }
         .confirm-btn {
             background: var(--gold);
@@ -206,146 +257,190 @@
             font-weight: 600;
             cursor: pointer;
         }
+        
         .footer {
             background: var(--navy-light);
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
+            border-top: 1px solid rgba(198, 164, 59, 0.2);
         }
+        .footer p { margin: 0.5rem 0; }
+        
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
+            .hero { padding-top: 180px; }
             .flight-card { flex-direction: column; text-align: center; gap: 1rem; }
             .nav-links { gap: 1rem; }
+            .disclaimer-banner p { gap: 0.8rem; font-size: 0.7rem; }
+            .search-form { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div><h1>The DOUBLE H <span>CONCIERGE</span></h1><p>Global Luxury Travel</p></div>
+            <div class="logo">
+                <h1>DOUBLE H <span>CONCIERGE</span></h1>
+                <p>Global Luxury Travel</p>
+            </div>
             <div class="nav-links">
                 <a onclick="showSearch()">Search Flights</a>
                 <a onclick="showBookings()">My Bookings</a>
             </div>
         </div>
     </nav>
-<div class="price-disclaimer" style="background: linear-gradient(90deg, #0F2A3F, #1A3A4F); padding: 0.6rem; text-align: center; border-bottom: 1px solid rgba(198, 164, 59, 0.3); position: relative; top: 70px;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <p style="color: #C6A43B; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+
+    <!-- Price Disclaimer Banner -->
+    <div class="disclaimer-banner">
+        <p>
             <span><i class="fas fa-chart-line"></i> Real-time market estimates</span>
             <span><i class="fas fa-calendar-week"></i> 180 days availability</span>
             <span><i class="fas fa-globe"></i> 50+ destinations including Uganda</span>
-            <span><i class="fas fa-concierge-bell"></i> <strong>For actual fares, contact concierge</strong></span>
+            <span><i class="fas fa-phone-alt"></i> <strong>Actual fares: Contact concierge</strong></span>
         </p>
     </div>
-</div>
 
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-badge">50+ COUNTRIES • 180 DAYS</div>
+            <div class="hero-badge">EST. 2024 • 50+ COUNTRIES</div>
             <h1>Your Journey,<br><span>Perfected</span></h1>
             <p>Uganda • Dubai • London • New York • Singapore • Cape Town</p>
         </div>
     </div>
 
     <div class="search-card" id="searchSection">
-    <div class="trip-tabs">
-        <button class="trip-tab active" onclick="setTripType('oneway')">One Way</button>
-        <button class="trip-tab" onclick="setTripType('round')">Round Trip</button>
-        <button class="trip-tab" onclick="setTripType('multi')">Multi-City</button>
-    </div>
-    <button class="search-btn" onclick="searchFlights()">Search Flights</button>
-     
-        <div id="onewaySearch"> 
+        <div class="trip-tabs">
+            <button class="trip-tab active" onclick="setTripType('oneway')">One Way</button>
+            <button class="trip-tab" onclick="setTripType('round')">Round Trip</button>
+            <button class="trip-tab" onclick="setTripType('multi')">Multi-City</button>
+        </div>
+
+        <!-- One Way Search -->
+        <div id="onewaySearch">
             <div class="search-form">
                 <div class="form-group"><label>From</label><select id="fromCity"></select></div>
                 <div class="form-group"><label>To</label><select id="toCity"></select></div>
                 <div class="form-group"><label>Departure Date</label><input type="date" id="departureDate"></div>
-                <div class="form-group"><label>Cabin Class</label><select id="cabinClass"><option value="economy">Economy</option><option value="business">Business</option><option value="first">First Class</option></select></div>
+                <div class="form-group"><label>Cabin Class</label>
+                    <select id="cabinClass">
+                        <option value="economy">Economy</option>
+                        <option value="business">Business (3.2x)</option>
+                        <option value="first">First Class (5.5x)</option>
+                    </select>
+                </div>
             </div>
             <button class="search-btn" onclick="searchFlights()">Search Flights</button>
         </div>
 
+        <!-- Round Trip Search -->
         <div id="roundSearch" style="display:none">
             <div class="search-form">
                 <div class="form-group"><label>From</label><select id="roundFromCity"></select></div>
                 <div class="form-group"><label>To</label><select id="roundToCity"></select></div>
                 <div class="form-group"><label>Departure Date</label><input type="date" id="roundDepartureDate"></div>
                 <div class="form-group"><label>Return Date</label><input type="date" id="roundReturnDate"></div>
-                <div class="form-group"><label>Cabin Class</label><select id="roundCabinClass"><option value="economy">Economy</option><option value="business">Business</option><option value="first">First Class</option></select></div>
+                <div class="form-group"><label>Cabin Class</label>
+                    <select id="roundCabinClass">
+                        <option value="economy">Economy</option>
+                        <option value="business">Business (3.2x)</option>
+                        <option value="first">First Class (5.5x)</option>
+                    </select>
+                </div>
             </div>
             <button class="search-btn" onclick="searchRoundTrip()">Search Round Trip</button>
         </div>
 
+        <!-- Multi-City Search -->
         <div id="multiSearch" style="display:none">
             <div id="multiSegments"></div>
-            <button class="add-segment-btn" onclick="addMultiSegment()">+ Add Another City</button>
+            <button class="add-segment-btn" onclick="addMultiSegment()">+ Add Another Destination</button>
             <div class="search-form" style="margin-top:1rem">
-                <div class="form-group"><label>Cabin Class</label><select id="multiCabinClass"><option value="economy">Economy</option><option value="business">Business</option><option value="first">First Class</option></select></div>
+                <div class="form-group"><label>Cabin Class</label>
+                    <select id="multiCabinClass">
+                        <option value="economy">Economy</option>
+                        <option value="business">Business (3.2x)</option>
+                        <option value="first">First Class (5.5x)</option>
+                    </select>
+                </div>
             </div>
             <button class="search-btn" onclick="searchMultiCity()">Search Multi-City</button>
+        </div>
+        
+        <!-- Price Note -->
+        <div style="margin-top: 1rem; text-align: center; font-size: 0.7rem; color: var(--gray); border-top: 1px solid #eee; padding-top: 1rem;">
+            <i class="fas fa-info-circle"></i> Prices shown are market estimates based on current trends. 
+            <strong>Contact concierge for confirmed booking and actual fares.</strong>
         </div>
     </div>
 
     <div id="resultsSection" class="results-section">
-        <div class="section-header"><h2>Available <span>Flights</span></h2><div id="resultCount"></div></div>
+        <div class="section-header">
+            <h2>Available <span>Flights</span></h2>
+            <div class="result-count" id="resultCount"></div>
+        </div>
         <div id="flightList"></div>
     </div>
 
     <div id="bookingsSection" class="results-section">
-        <div class="section-header"><h2>My <span>Bookings</span></h2></div>
-        <div id="bookingsList"></div>
+        <div class="section-header">
+            <h2>My <span>Bookings</span></h2>
+        </div>
+        <div id="bookingsList" style="background: var(--navy-light); border-radius: 12px; padding: 2rem;"></div>
     </div>
 
     <div id="bookingModal" class="modal">
         <div class="modal-content">
             <h3>Complete Your Booking</h3>
-            <div id="modalDetails"></div>
-            <input type="text" id="passengerName" placeholder="Full Name">
-            <input type="email" id="passengerEmail" placeholder="Email">
-            <input type="tel" id="passengerPhone" placeholder="Phone">
+            <div id="modalDetails" style="margin-bottom: 1rem; background: #f5f5f5; padding: 1rem; border-radius: 8px;"></div>
+            <input type="text" id="passengerName" placeholder="Full Name" required>
+            <input type="email" id="passengerEmail" placeholder="Email Address" required>
+            <input type="tel" id="passengerPhone" placeholder="Phone Number" required>
+            <p style="font-size: 0.7rem; color: #666; margin-bottom: 1rem;">
+                <i class="fas fa-info-circle"></i> You'll receive confirmation and a concierge will contact you.
+            </p>
             <button class="confirm-btn" onclick="confirmBooking()">Confirm Booking</button>
-            <button onclick="closeModal()" style="margin-top:0.5rem; width:100%; padding:0.5rem;">Cancel</button>
+            <button onclick="closeModal()" style="margin-top: 0.5rem; width: 100%; padding: 0.8rem; background: #ef4444; color: white; border: none; border-radius: 8px; cursor: pointer;">Cancel</button>
         </div>
     </div>
-      <!-- ADD DISCLAIMER HERE -->
-    <div style="background: #0F2A3F; padding: 0.8rem; text-align: center; border-radius: 8px; margin-top: 1rem;">
-        <p style="color: #C6A43B; font-size: 0.75rem; margin: 0;">
-            <i class="fas fa-info-circle"></i> Prices shown are approximate market estimates for demonstration. 
-            For real-time booking and accurate fares, please contact our concierge.
+
+    <footer class="footer">
+        <p>&copy; 2024 Double H Concierge | Global Luxury Travel</p>
+        <p style="font-size: 0.7rem; opacity: 0.7;">
+            <i class="fas fa-shield-alt"></i> Market estimates based on current airline pricing. 
+            For confirmed bookings, contact our 24/7 concierge service.
         </p>
-    </div>
-</div>
-
-
- <footer class="footer">
-    <p>&copy; 2026 Double H Concierge | Global Luxury Travel</p>
-    <!-- ADD DISCLAIMER HERE -->
-    <p style="font-size: 0.7rem; margin-top: 0.5rem; opacity: 0.7;">
-        <i class="fas fa-info-circle"></i> Prices shown are market estimates. Contact concierge for actual fares.
-    </p>
-</footer>
+    </footer>
 
     <script>
         let selectedFlights = [];
         let currentTripType = 'oneway';
         let allCities = [];
-        let searchResults = null;
+        let multiSegmentCount = 1;
 
+        // Set default dates
         document.getElementById('departureDate').value = new Date().toISOString().split('T')[0];
         document.getElementById('roundDepartureDate').value = new Date().toISOString().split('T')[0];
         let tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 7);
         document.getElementById('roundReturnDate').value = tomorrow.toISOString().split('T')[0];
 
+        // Load cities from backend
         async function loadCities() {
-            const response = await fetch('/api/cities');
-            allCities = await response.json();
-            const selects = ['fromCity', 'toCity', 'roundFromCity', 'roundToCity'];
-            selects.forEach(id => {
-                const select = document.getElementById(id);
-                if(select) allCities.forEach(city => { select.innerHTML += `<option value="${city}">${city}</option>`; });
-            });
-            addMultiSegment();
+            try {
+                const response = await fetch('/api/cities');
+                allCities = await response.json();
+                const selects = ['fromCity', 'toCity', 'roundFromCity', 'roundToCity'];
+                selects.forEach(id => {
+                    const select = document.getElementById(id);
+                    if(select) {
+                        select.innerHTML = '<option value="">Select city</option>';
+                        allCities.forEach(city => { select.innerHTML += `<option value="${city}">${city}</option>`; });
+                    }
+                });
+                addMultiSegment();
+            } catch (error) {
+                console.error('Error loading cities:', error);
+            }
         }
         loadCities();
 
@@ -364,13 +459,18 @@
             const date = document.getElementById('departureDate').value;
             const cabin = document.getElementById('cabinClass').value;
 
-            const response = await fetch('/api/flights/search', {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ from, to, date, cabin_class: cabin, trip_type: 'oneway' })
-            });
-            const data = await response.json();
-            searchResults = data.outbound;
-            displayFlights(data.outbound);
+            if (!from || !to) { alert('Please select departure and destination'); return; }
+
+            showLoading(true);
+            try {
+                const response = await fetch('/api/flights/search', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ from, to, date, cabin_class: cabin, trip_type: 'oneway' })
+                });
+                const data = await response.json();
+                displayFlights(data.outbound, 'oneway');
+            } catch (error) { alert('Error searching flights'); }
+            showLoading(false);
         }
 
         async function searchRoundTrip() {
@@ -380,16 +480,20 @@
             const returnDate = document.getElementById('roundReturnDate').value;
             const cabin = document.getElementById('roundCabinClass').value;
 
-            const response = await fetch('/api/flights/search', {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ from, to, date, return_date: returnDate, cabin_class: cabin, trip_type: 'round' })
-            });
-            const data = await response.json();
-            searchResults = data;
-            displayRoundTripResults(data.outbound, data.return);
+            if (!from || !to) { alert('Please select departure and destination'); return; }
+
+            showLoading(true);
+            try {
+                const response = await fetch('/api/flights/search', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ from, to, date, return_date: returnDate, cabin_class: cabin, trip_type: 'round' })
+                });
+                const data = await response.json();
+                displayRoundTripResults(data.outbound, data.return);
+            } catch (error) { alert('Error searching flights'); }
+            showLoading(false);
         }
 
-        let multiSegmentCount = 1;
         function addMultiSegment() {
             multiSegmentCount++;
             const container = document.getElementById('multiSegments');
@@ -401,19 +505,20 @@
                 <div class="form-group"><label>From</label><select id="segFrom${multiSegmentCount}"></select></div>
                 <div class="form-group"><label>To</label><select id="segTo${multiSegmentCount}"></select></div>
                 <div class="form-group"><label>Date</label><input type="date" id="segDate${multiSegmentCount}"></div>
-                <button onclick="removeSegment(${multiSegmentCount})" style="background:none; border:none; color:#C6A43B; cursor:pointer;">✖ Remove</button>
+                <button onclick="removeSegment(${multiSegmentCount})" style="background:none; border:none; color:var(--gold); cursor:pointer;">✖ Remove</button>
             `;
             allCities.forEach(city => {
-                document.getElementById(`segFrom${multiSegmentCount}`).innerHTML += `<option value="${city}">${city}</option>`;
-                document.getElementById(`segTo${multiSegmentCount}`).innerHTML += `<option value="${city}">${city}</option>`;
+                if(document.getElementById(`segFrom${multiSegmentCount}`)) 
+                    document.getElementById(`segFrom${multiSegmentCount}`).innerHTML += `<option value="${city}">${city}</option>`;
+                if(document.getElementById(`segTo${multiSegmentCount}`))
+                    document.getElementById(`segTo${multiSegmentCount}`).innerHTML += `<option value="${city}">${city}</option>`;
             });
-            document.getElementById(`segDate${multiSegmentCount}`).value = new Date().toISOString().split('T')[0];
+            if(document.getElementById(`segDate${multiSegmentCount}`))
+                document.getElementById(`segDate${multiSegmentCount}`).value = new Date().toISOString().split('T')[0];
             container.appendChild(div);
         }
 
-        function removeSegment(id) {
-            document.getElementById(`segment${id}`).remove();
-        }
+        function removeSegment(id) { document.getElementById(`segment${id}`)?.remove(); }
 
         async function searchMultiCity() {
             const cabin = document.getElementById('multiCabinClass').value;
@@ -427,43 +532,58 @@
                     });
                 }
             }
-            const response = await fetch('/api/flights/multi-city', {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ segments, cabin_class: cabin })
-            });
-            const results = await response.json();
-            searchResults = results;
-            displayMultiCityResults(results);
+            showLoading(true);
+            try {
+                const response = await fetch('/api/flights/multi-city', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ segments, cabin_class: cabin })
+                });
+                const results = await response.json();
+                displayMultiCityResults(results);
+            } catch (error) { alert('Error searching flights'); }
+            showLoading(false);
         }
 
-        function displayFlights(flights) {
+        function displayFlights(flights, type) {
             const container = document.getElementById('flightList');
-            if(!flights || flights.length === 0) { container.innerHTML = '<div style="background:#0F2A3F; padding:2rem; text-align:center;">No flights available. Try different dates.</div>'; }
-            else {
+            if(!flights || flights.length === 0) { 
+                container.innerHTML = '<div style="background: #0F2A3F; padding: 2rem; text-align: center; border-radius: 12px;">✨ No flights available. Try different dates or destinations.</div>';
+            } else {
                 container.innerHTML = flights.map(f => `
                     <div class="flight-card" onclick="selectFlight([${JSON.stringify(f).replace(/"/g, '&quot;')}], ${f.price})">
-                        <div><strong>✈️ ${f.airline} - ${f.flight_number}</strong><br>${f.departure_time} → ${f.arrival_time}<br>${f.duration}</div>
-                        <div><div class="price-amount">₦${f.price.toLocaleString()}</div><button class="book-btn">Book</button></div>
+                        <div>
+                            <h3>✈️ ${f.airline} • ${f.flight_number}</h3>
+                            <div><span class="flight-time">${f.departure_time}</span> → <span class="flight-time">${f.arrival_time}</span> | ${f.duration}</div>
+                            <div style="font-size: 0.8rem; color: var(--gray);">${f.from_city} → ${f.to_city}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="price-amount">₦${f.price.toLocaleString()}</div>
+                            <div class="price-note">per passenger</div>
+                            <button class="book-btn">Select</button>
+                        </div>
                     </div>
                 `).join('');
             }
             document.getElementById('resultsSection').style.display = 'block';
             document.getElementById('resultCount').innerHTML = `${flights.length} flights found`;
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
         }
 
+        let selectedOutbound = null, selectedReturn = null;
         function displayRoundTripResults(outbound, returnFlights) {
             const container = document.getElementById('flightList');
-            let html = '<h3>✈️ Outbound Flights</h3>';
-            if(outbound.length) outbound.forEach(f => { html += `<div class="flight-card" onclick="selectRoundTripFlight('outbound', ${JSON.stringify(f).replace(/"/g, '&quot;')})"><div><strong>${f.airline} ${f.flight_number}</strong><br>${f.departure_time} → ${f.arrival_time}</div><div class="price-amount">₦${f.price.toLocaleString()}</div></div>`; });
-            else html += '<div>No outbound flights</div>';
-            html += '<h3 style="margin-top:2rem;">🔄 Return Flights</h3>';
-            if(returnFlights.length) returnFlights.forEach(f => { html += `<div class="flight-card" onclick="selectRoundTripFlight('return', ${JSON.stringify(f).replace(/"/g, '&quot;')})"><div><strong>${f.airline} ${f.flight_number}</strong><br>${f.departure_time} → ${f.arrival_time}</div><div class="price-amount">₦${f.price.toLocaleString()}</div></div>`; });
-            else html += '<div>No return flights</div>';
+            let html = '<div style="margin-bottom: 1rem;"><h3 style="color: var(--gold);">✈️ Outbound Flights</h3></div>';
+            if(outbound && outbound.length) {
+                outbound.forEach(f => { html += `<div class="flight-card" onclick="selectRoundTripFlight('outbound', ${JSON.stringify(f).replace(/"/g, '&quot;')})"><div><strong>${f.airline} ${f.flight_number}</strong><br>${f.departure_time} → ${f.arrival_time}<br>${f.from_city} → ${f.to_city}</div><div class="price-amount">₦${f.price.toLocaleString()}</div></div>`; });
+            } else html += '<div style="background:#0F2A3F; padding:1rem; text-align:center;">No outbound flights</div>';
+            html += '<div style="margin: 2rem 0 1rem;"><h3 style="color: var(--gold);">🔄 Return Flights</h3></div>';
+            if(returnFlights && returnFlights.length) {
+                returnFlights.forEach(f => { html += `<div class="flight-card" onclick="selectRoundTripFlight('return', ${JSON.stringify(f).replace(/"/g, '&quot;')})"><div><strong>${f.airline} ${f.flight_number}</strong><br>${f.departure_time} → ${f.arrival_time}<br>${f.from_city} → ${f.to_city}</div><div class="price-amount">₦${f.price.toLocaleString()}</div></div>`; });
+            } else html += '<div style="background:#0F2A3F; padding:1rem; text-align:center;">No return flights</div>';
             container.innerHTML = html;
             document.getElementById('resultsSection').style.display = 'block';
         }
 
-        let selectedOutbound = null, selectedReturn = null;
         function selectRoundTripFlight(type, flight) {
             if(type === 'outbound') selectedOutbound = flight;
             else selectedReturn = flight;
@@ -473,72 +593,81 @@
             }
         }
 
+        let selectedMultiFlights = [];
         function displayMultiCityResults(segments) {
             const container = document.getElementById('flightList');
             let html = '';
-            let total = 0;
-            let allFlights = [];
+            let allSelected = true;
+            selectedMultiFlights = [];
             segments.forEach((segment, idx) => {
-                html += `<h3>Segment ${idx+1}</h3>`;
-                if(segment.length) {
-                    html += segment.map(f => `<div class="flight-card" onclick="selectMultiCityFlight(${idx}, ${JSON.stringify(f).replace(/"/g, '&quot;')})"><div><strong>${f.airline} ${f.flight_number}</strong><br>${f.departure_time} → ${f.arrival_time}</div><div class="price-amount">₦${f.price.toLocaleString()}</div></div>`).join('');
-                } else html += '<div>No flights for this segment</div>';
+                html += `<div style="margin: 1rem 0 0.5rem;"><h3 style="color: var(--gold);">Segment ${idx+1}</h3></div>`;
+                if(segment && segment.length) {
+                    html += segment.map(f => `<div class="flight-card" onclick="selectMultiCityFlight(${idx}, ${JSON.stringify(f).replace(/"/g, '&quot;')})"><div><strong>${f.airline} ${f.flight_number}</strong><br>${f.departure_time} → ${f.arrival_time}<br>${f.from_city} → ${f.to_city}</div><div class="price-amount">₦${f.price.toLocaleString()}</div></div>`).join('');
+                    if(selectedMultiFlights[idx]) allSelected = false;
+                } else { html += '<div style="background:#0F2A3F; padding:1rem; text-align:center;">No flights available</div>'; allSelected = false; }
             });
             container.innerHTML = html;
             document.getElementById('resultsSection').style.display = 'block';
-            window.selectedMultiFlights = new Array(segments.length).fill(null);
         }
 
         function selectMultiCityFlight(segmentIdx, flight) {
-            window.selectedMultiFlights[segmentIdx] = flight;
-            if(window.selectedMultiFlights.every(f => f !== null)) {
-                const total = window.selectedMultiFlights.reduce((sum, f) => sum + f.price, 0);
-                selectFlight(window.selectedMultiFlights, total);
+            selectedMultiFlights[segmentIdx] = flight;
+            if(selectedMultiFlights.every(f => f !== null)) {
+                const total = selectedMultiFlights.reduce((sum, f) => sum + f.price, 0);
+                selectFlight(selectedMultiFlights, total);
             }
         }
 
+        let currentTotal = 0;
         function selectFlight(flights, total) {
-            selectedFlights = flights;
+            selectedFlights = Array.isArray(flights) ? flights : [flights];
+            currentTotal = total;
             let detailsHtml = '';
-            if(Array.isArray(flights)) {
-                flights.forEach((f, i) => { detailsHtml += `<p><strong>✈️ ${f.airline} ${f.flight_number}</strong><br>${f.from_city} → ${f.to_city} | ${f.departure_time} | ₦${f.price.toLocaleString()}</p>`; });
-            } else {
-                detailsHtml = `<p><strong>✈️ ${flights.airline} ${flights.flight_number}</strong><br>${flights.from_city} → ${flights.to_city} | ${flights.departure_time}<br>₦${flights.price.toLocaleString()}</p>`;
-                selectedFlights = [flights];
-            }
-            document.getElementById('modalDetails').innerHTML = detailsHtml + `<p><strong style="color:var(--gold);">Total: ₦${total.toLocaleString()}</strong></p>`;
+            selectedFlights.forEach((f, i) => {
+                detailsHtml += `<p><strong>✈️ ${f.airline} ${f.flight_number}</strong><br>${f.from_city} → ${f.to_city} | ${f.departure_time}<br>₦${f.price.toLocaleString()}</p>`;
+            });
+            detailsHtml += `<p><strong style="color: var(--gold);">Total: ₦${total.toLocaleString()}</strong></p>`;
+            document.getElementById('modalDetails').innerHTML = detailsHtml;
             document.getElementById('bookingModal').style.display = 'flex';
-            window.currentTotal = total;
         }
 
         async function confirmBooking() {
             const name = document.getElementById('passengerName').value;
             const email = document.getElementById('passengerEmail').value;
             const phone = document.getElementById('passengerPhone').value;
-            if(!name || !email || !phone) { alert('Please fill all fields'); return; }
-            const response = await fetch('/api/bookings', {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ flights: selectedFlights, passenger_name: name, email, phone, total_amount: window.currentTotal, trip_type: currentTripType })
-            });
-            const result = await response.json();
-            alert(`✓ Booking Confirmed!\n\nReference: ${result.booking_reference}`);
-            closeModal();
-            document.getElementById('passengerName').value = '';
-            document.getElementById('passengerEmail').value = '';
-            document.getElementById('passengerPhone').value = '';
+            if(!name || !email || !phone) { alert('Please fill all passenger details'); return; }
+            try {
+                const response = await fetch('/api/bookings', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ flights: selectedFlights, passenger_name: name, email, phone, total_amount: currentTotal, trip_type: currentTripType })
+                });
+                const result = await response.json();
+                alert(`✓ Booking Confirmed!\n\nReference: ${result.booking_reference}\n\nA Double H Concierge specialist will contact you within 24 hours.`);
+                closeModal();
+                document.getElementById('passengerName').value = '';
+                document.getElementById('passengerEmail').value = '';
+                document.getElementById('passengerPhone').value = '';
+            } catch (error) { alert('Error processing booking'); }
         }
 
         async function showBookings() {
-            const response = await fetch('/api/bookings/my-bookings');
-            const bookings = await response.json();
-            const container = document.getElementById('bookingsList');
-            if(bookings.length === 0) container.innerHTML = '<div style="background:#0F2A3F; padding:2rem; text-align:center;">No bookings yet</div>';
-            else {
-                container.innerHTML = bookings.map(b => `<div class="flight-card"><div><strong>✈️ ${b.booking_reference}</strong><br>${b.passenger_name}<br>${b.booking_date?.split('T')[0]}</div><div><div class="price-amount">₦${b.total_amount?.toLocaleString()}</div><span style="color:var(--gold);">✓ ${b.status}</span></div></div>`).join('');
-            }
-            document.getElementById('searchSection').style.display = 'none';
-            document.getElementById('resultsSection').style.display = 'none';
-            document.getElementById('bookingsSection').style.display = 'block';
+            try {
+                const response = await fetch('/api/bookings/my-bookings');
+                const bookings = await response.json();
+                const container = document.getElementById('bookingsList');
+                if(bookings.length === 0) container.innerHTML = '<div style="text-align: center; padding: 2rem;">No bookings yet. Start your luxury journey with us.</div>';
+                else {
+                    container.innerHTML = bookings.map(b => `
+                        <div class="flight-card" style="margin-bottom: 1rem;">
+                            <div><strong>✈️ ${b.booking_reference}</strong><br>${b.passenger_name}<br>${b.booking_date?.split('T')[0]}</div>
+                            <div><div class="price-amount">₦${b.total_amount?.toLocaleString()}</div><span style="color: var(--gold);">✓ ${b.status}</span></div>
+                        </div>
+                    `).join('');
+                }
+                document.getElementById('searchSection').style.display = 'none';
+                document.getElementById('resultsSection').style.display = 'none';
+                document.getElementById('bookingsSection').style.display = 'block';
+            } catch (error) { alert('Error loading bookings'); }
         }
 
         function showSearch() {
@@ -548,6 +677,11 @@
         }
 
         function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
+
+        function showLoading(show) {
+            const btns = document.querySelectorAll('.search-btn');
+            btns.forEach(btn => { if(show) { btn.textContent = 'Searching...'; btn.disabled = true; } else { btn.textContent = btn.onclick.toString().includes('Round') ? 'Search Round Trip' : 'Search Flights'; btn.disabled = false; } });
+        }
     </script>
 </body>
 </html>
