@@ -229,6 +229,16 @@
             </div>
         </div>
     </nav>
+<div class="price-disclaimer" style="background: linear-gradient(90deg, #0F2A3F, #1A3A4F); padding: 0.6rem; text-align: center; border-bottom: 1px solid rgba(198, 164, 59, 0.3); position: relative; top: 70px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <p style="color: #C6A43B; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <span><i class="fas fa-chart-line"></i> Real-time market estimates</span>
+            <span><i class="fas fa-calendar-week"></i> 180 days availability</span>
+            <span><i class="fas fa-globe"></i> 50+ destinations including Uganda</span>
+            <span><i class="fas fa-concierge-bell"></i> <strong>For actual fares, contact concierge</strong></span>
+        </p>
+    </div>
+</div>
 
     <div class="hero">
         <div class="hero-content">
@@ -239,11 +249,24 @@
     </div>
 
     <div class="search-card" id="searchSection">
-        <div class="trip-tabs">
-            <button class="trip-tab active" onclick="setTripType('oneway')">One Way</button>
-            <button class="trip-tab" onclick="setTripType('round')">Round Trip</button>
-            <button class="trip-tab" onclick="setTripType('multi')">Multi-City</button>
-        </div>
+    <div class="trip-tabs">
+        <button class="trip-tab active" onclick="setTripType('oneway')">One Way</button>
+        <button class="trip-tab" onclick="setTripType('round')">Round Trip</button>
+        <button class="trip-tab" onclick="setTripType('multi')">Multi-City</button>
+    </div>
+
+    <!-- Your search forms here... -->
+
+    <button class="search-btn" onclick="searchFlights()">Search Flights</button>
+    
+    <!-- ADD DISCLAIMER HERE -->
+    <div style="background: #0F2A3F; padding: 0.8rem; text-align: center; border-radius: 8px; margin-top: 1rem;">
+        <p style="color: #C6A43B; font-size: 0.75rem; margin: 0;">
+            <i class="fas fa-info-circle"></i> Prices shown are approximate market estimates for demonstration. 
+            For real-time booking and accurate fares, please contact our concierge.
+        </p>
+    </div>
+</div>
 
         <div id="onewaySearch">
             <div class="search-form">
@@ -298,7 +321,13 @@
         </div>
     </div>
 
-    <footer class="footer"><p>&copy; 2026 Double H Concierge | Uganda • Dubai • London • New York • 180 Days Ahead</p></footer>
+ <footer class="footer">
+    <p>&copy; 2024 Double H Concierge | Global Luxury Travel</p>
+    <!-- ADD DISCLAIMER HERE -->
+    <p style="font-size: 0.7rem; margin-top: 0.5rem; opacity: 0.7;">
+        <i class="fas fa-info-circle"></i> Prices shown are market estimates. Contact concierge for actual fares.
+    </p>
+</footer>
 
     <script>
         let selectedFlights = [];
