@@ -1,0 +1,30 @@
+.price-disclaimer {
+    background: linear-gradient(90deg, #0F2A3F, #1A3A4F);
+    padding: 0.6rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(198, 164, 59, 0.3);
+    position: sticky;
+    top: 70px;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+}
+
+.price-disclaimer p {
+    margin: 0;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.price-disclaimer i {
+    color: #C6A43B;
+    margin-right: 0.3rem;
+}
+
+.price-disclaimer strong {
+    color: #C6A43B;
+    font-weight: 600;
+}
