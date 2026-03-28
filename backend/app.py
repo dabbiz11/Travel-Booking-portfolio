@@ -8,14 +8,14 @@ app = Flask(__name__, static_folder='../frontend', static_url_path='')
 CORS(app)
 
 # ========================================
-# COMPLETE CITIES LIST (50+ INCLUDING UGANDA)
+# COMPLETE CITIES LIST
 # ========================================
 
 cities = [
-    # Africa (Including Uganda)
+    # Africa
     "Lagos (LOS)", "Abuja (ABV)", "Kampala (EBB)", "Entebbe (EBB)", "Nairobi (NBO)", 
     "Cape Town (CPT)", "Johannesburg (JNB)", "Accra (ACC)", "Casablanca (CMN)", "Cairo (CAI)",
-    "Addis Ababa (ADD)", "Dar es Salaam (DAR)", "Kigali (KGL)", "Mauritius (MRU)", "Marrakech (RAK)",
+    "Addis Ababa (ADD)", "Dar es Salaam (DAR)", "Kigali (KGL)", "Mauritius (MRU)",
     
     # Middle East
     "Dubai (DXB)", "Abu Dhabi (AUH)", "Doha (DOH)", "Riyadh (RUH)", "Jeddah (JED)", 
@@ -23,17 +23,16 @@ cities = [
     
     # Europe
     "London (LHR)", "Paris (CDG)", "Frankfurt (FRA)", "Amsterdam (AMS)", "Rome (FCO)",
-    "Milan (MXP)", "Barcelona (BCN)", "Madrid (MAD)", "Zurich (ZRH)", "Geneva (GVA)",
-    "Vienna (VIE)", "Prague (PRG)", "Lisbon (LIS)", "Dublin (DUB)", "Manchester (MAN)",
-    "Berlin (BER)", "Munich (MUC)", "Istanbul (IST)",
+    "Milan (MXP)", "Barcelona (BCN)", "Madrid (MAD)", "Zurich (ZRH)", "Vienna (VIE)",
+    "Manchester (MAN)", "Berlin (BER)", "Munich (MUC)", "Istanbul (IST)",
     
     # Asia
     "Singapore (SIN)", "Bangkok (BKK)", "Tokyo (HND)", "Seoul (ICN)", "Hong Kong (HKG)",
-    "Kuala Lumpur (KUL)", "Jakarta (CGK)", "Mumbai (BOM)", "Delhi (DEL)", "Ho Chi Minh (SGN)",
+    "Kuala Lumpur (KUL)", "Mumbai (BOM)", "Delhi (DEL)", "Ho Chi Minh (SGN)",
     
     # North America
     "New York (JFK)", "Los Angeles (LAX)", "Chicago (ORD)", "Miami (MIA)", "Toronto (YYZ)",
-    "Vancouver (YVR)", "San Francisco (SFO)", "Boston (BOS)", "Washington (IAD)",
+    "San Francisco (SFO)", "Boston (BOS)",
     
     # South America
     "Sao Paulo (GRU)", "Rio de Janeiro (GIG)", "Buenos Aires (EZE)", "Bogota (BOG)", "Lima (LIM)",
@@ -42,7 +41,6 @@ cities = [
     "Sydney (SYD)", "Melbourne (MEL)", "Auckland (AKL)", "Brisbane (BNE)", "Perth (PER)"
 ]
 
-# Premium Airlines
 airlines = [
     {"name": "Emirates", "code": "EK"},
     {"name": "Qatar Airways", "code": "QR"},
@@ -54,137 +52,120 @@ airlines = [
     {"name": "RwandAir", "code": "WB"},
     {"name": "South African Airways", "code": "SA"},
     {"name": "Air France", "code": "AF"},
-    {"name": "Lufthansa", "code": "LH"},
-    {"name": "Singapore Airlines", "code": "SQ"}
+    {"name": "Lufthansa", "code": "LH"}
 ]
 
-# REALISTIC MARKET PRICES (in Naira)
-route_prices = {
-    # Uganda Routes
-    ("Kampala (EBB)", "Dubai (DXB)"): 320000,
-    ("Kampala (EBB)", "London (LHR)"): 480000,
-    ("Kampala (EBB)", "Nairobi (NBO)"): 95000,
-    ("Kampala (EBB)", "Johannesburg (JNB)"): 280000,
-    ("Kampala (EBB)", "Addis Ababa (ADD)"): 120000,
-    ("Kampala (EBB)", "Kigali (KGL)"): 80000,
-    ("Kampala (EBB)", "Istanbul (IST)"): 380000,
-    ("Kampala (EBB)", "Doha (DOH)"): 310000,
-    ("Lagos (LOS)", "Kampala (EBB)"): 250000,
-    ("Nairobi (NBO)", "Kampala (EBB)"): 95000,
-    
-    # Nigeria Routes
-    ("Lagos (LOS)", "Dubai (DXB)"): 380000,
-    ("Lagos (LOS)", "London (LHR)"): 520000,
-    ("Lagos (LOS)", "New York (JFK)"): 950000,
-    ("Lagos (LOS)", "Johannesburg (JNB)"): 310000,
-    ("Lagos (LOS)", "Nairobi (NBO)"): 280000,
-    ("Lagos (LOS)", "Accra (ACC)"): 95000,
-    ("Lagos (LOS)", "Cape Town (CPT)"): 420000,
-    ("Abuja (ABV)", "Dubai (DXB)"): 390000,
-    ("Abuja (ABV)", "London (LHR)"): 530000,
-    
-    # Middle East to Europe/Asia
-    ("Dubai (DXB)", "London (LHR)"): 220000,
-    ("Dubai (DXB)", "Paris (CDG)"): 210000,
-    ("Dubai (DXB)", "New York (JFK)"): 480000,
-    ("Dubai (DXB)", "Singapore (SIN)"): 320000,
-    ("Dubai (DXB)", "Bangkok (BKK)"): 190000,
-    ("Dubai (DXB)", "Mumbai (BOM)"): 110000,
-    ("Dubai (DXB)", "Kampala (EBB)"): 320000,
-    
-    # European Routes
-    ("London (LHR)", "New York (JFK)"): 380000,
-    ("London (LHR)", "Paris (CDG)"): 75000,
-    ("London (LHR)", "Dubai (DXB)"): 220000,
-    ("London (LHR)", "Singapore (SIN)"): 520000,
-    ("Paris (CDG)", "Dubai (DXB)"): 210000,
-    ("Paris (CDG)", "New York (JFK)"): 390000,
-    ("Istanbul (IST)", "Dubai (DXB)"): 140000,
-    
-    # African Routes
-    ("Nairobi (NBO)", "Dubai (DXB)"): 270000,
-    ("Nairobi (NBO)", "London (LHR)"): 420000,
-    ("Nairobi (NBO)", "Johannesburg (JNB)"): 220000,
-    ("Johannesburg (JNB)", "Dubai (DXB)"): 350000,
-    ("Johannesburg (JNB)", "London (LHR)"): 470000,
-    ("Cape Town (CPT)", "Dubai (DXB)"): 380000,
-    ("Cape Town (CPT)", "London (LHR)"): 520000,
-    
-    # Asian Routes
-    ("Singapore (SIN)", "Bangkok (BKK)"): 85000,
-    ("Singapore (SIN)", "Dubai (DXB)"): 320000,
-    ("Singapore (SIN)", "London (LHR)"): 520000,
-    ("Bangkok (BKK)", "Dubai (DXB)"): 190000,
-    ("Mumbai (BOM)", "Dubai (DXB)"): 110000,
-    ("Mumbai (BOM)", "London (LHR)"): 380000,
-}
+# ========================================
+# PRICE DATABASE - ALL ROUTES
+# ========================================
 
-# Generate flights for ALL routes (180 days)
-flights_list = []
-flight_id = 1
-
-print("✈️ Generating flights for 180 days...")
-
-for (from_city, to_city), base_price in route_prices.items():
-    for airline in airlines:
-        # Calculate price with airline variation
-        price_variation = random.uniform(0.92, 1.08)
-        economy_price = int(base_price * price_variation)
-        business_price = int(economy_price * 3.2)
-        first_price = int(economy_price * 5.5)
+def get_route_price(from_city, to_city):
+    """Get realistic price for any route"""
+    
+    # Extract city codes
+    from_code = from_city.split("(")[-1].replace(")", "").strip() if "(" in from_city else from_city[:3]
+    to_code = to_city.split("(")[-1].replace(")", "").strip() if "(" in to_city else to_city[:3]
+    
+    # Price matrix (in Naira)
+    prices = {
+        # Uganda Routes
+        ("EBB", "DXB"): 320000, ("EBB", "LHR"): 480000, ("EBB", "NBO"): 95000,
+        ("EBB", "JNB"): 280000, ("EBB", "ADD"): 120000, ("EBB", "KGL"): 80000,
+        ("EBB", "IST"): 380000, ("EBB", "DOH"): 310000,
         
-        # Generate for next 180 days (6 months)
-        for day_offset in range(1, 181):
-            flight_date = (datetime.now() + timedelta(days=day_offset)).strftime('%Y-%m-%d')
-            
-            # Seasonal pricing adjustment
-            month = int(flight_date[5:7])
-            seasonal_multiplier = 1.0
-            if month in [12, 1, 7, 8]:  # Peak seasons
-                seasonal_multiplier = 1.25
-            elif month in [4, 5, 6, 11]:  # Shoulder seasons
-                seasonal_multiplier = 1.1
-            else:
-                seasonal_multiplier = 0.95
-            
-            final_economy = int(economy_price * seasonal_multiplier)
-            final_business = int(business_price * seasonal_multiplier)
-            final_first = int(first_price * seasonal_multiplier)
-            
-            # Random times
-            hour = random.choice([6, 8, 10, 12, 14, 16, 18, 20, 22])
-            minute = random.choice([0, 15, 30, 45])
-            duration_h = random.randint(2, 12)
-            duration_m = random.choice([0, 15, 30, 45])
-            
-            flight = {
-                'id': flight_id,
-                'flight_number': f"{airline['code']}{random.randint(100, 999)}",
-                'airline': airline['name'],
-                'from_city': from_city,
-                'to_city': to_city,
-                'departure_time': f"{hour:02d}:{minute:02d}",
-                'arrival_time': f"{(hour + duration_h) % 24:02d}:{duration_m:02d}",
-                'duration': f"{duration_h}h {duration_m}m",
-                'date': flight_date,
-                'economy_price': final_economy,
-                'business_price': final_business,
-                'first_price': final_first,
-                'price': final_economy
-            }
-            flights_list.append(flight)
-            flight_id += 1
-            
-            # Limit to 15,000 flights for performance
-            if flight_id > 15000:
-                break
-        if flight_id > 15000:
-            break
-    if flight_id > 15000:
-        break
+        # Nigeria Routes
+        ("LOS", "DXB"): 380000, ("LOS", "LHR"): 520000, ("LOS", "JFK"): 950000,
+        ("LOS", "JNB"): 310000, ("LOS", "NBO"): 280000, ("LOS", "ACC"): 95000,
+        ("LOS", "CPT"): 420000, ("LOS", "EBB"): 250000,
+        ("ABV", "DXB"): 390000, ("ABV", "LHR"): 530000,
+        
+        # Kenya Routes
+        ("NBO", "DXB"): 270000, ("NBO", "LHR"): 420000, ("NBO", "JNB"): 220000,
+        ("NBO", "EBB"): 95000, ("NBO", "KGL"): 85000,
+        
+        # South Africa Routes
+        ("JNB", "DXB"): 350000, ("JNB", "LHR"): 470000, ("JNB", "CPT"): 150000,
+        ("CPT", "DXB"): 380000, ("CPT", "LHR"): 520000,
+        
+        # Middle East Routes
+        ("DXB", "LHR"): 220000, ("DXB", "CDG"): 210000, ("DXB", "JFK"): 480000,
+        ("DXB", "SIN"): 320000, ("DXB", "BKK"): 190000, ("DXB", "BOM"): 110000,
+        ("DXB", "EBB"): 320000, ("DXB", "NBO"): 270000,
+        
+        # European Routes
+        ("LHR", "JFK"): 380000, ("LHR", "CDG"): 75000, ("LHR", "DXB"): 220000,
+        ("LHR", "SIN"): 520000, ("CDG", "DXB"): 210000, ("CDG", "JFK"): 390000,
+        ("IST", "DXB"): 140000,
+        
+        # Asian Routes
+        ("SIN", "BKK"): 85000, ("SIN", "DXB"): 320000, ("SIN", "LHR"): 520000,
+        ("BKK", "DXB"): 190000, ("BOM", "DXB"): 110000, ("BOM", "LHR"): 380000,
+    }
+    
+    # Try exact match
+    key = (from_code, to_code)
+    if key in prices:
+        return prices[key]
+    
+    # Try reverse
+    rev_key = (to_code, from_code)
+    if rev_key in prices:
+        return prices[rev_key]
+    
+    # Default price based on distance approximation
+    return 400000
 
-print(f"✅ Generated {len(flights_list)} flights for {len(route_prices)} routes")
+# Generate flights dynamically
+def generate_flights_for_route(from_city, to_city, date, cabin):
+    """Generate flights on demand for any route"""
+    
+    base_price = get_route_price(from_city, to_city)
+    
+    # Apply cabin multiplier
+    if cabin == 'economy':
+        multiplier = 1.0
+    elif cabin == 'business':
+        multiplier = 3.2
+    else:
+        multiplier = 5.5
+    
+    price = int(base_price * multiplier)
+    
+    # Seasonal adjustment
+    month = int(date[5:7]) if date else 1
+    if month in [12, 1, 7, 8]:
+        price = int(price * 1.25)
+    elif month in [4, 5, 6, 11]:
+        price = int(price * 1.1)
+    else:
+        price = int(price * 0.95)
+    
+    # Generate multiple flights per route
+    flights = []
+    airlines_list = ["Emirates", "Qatar Airways", "British Airways", "Turkish Airlines", 
+                     "Uganda Airlines", "Kenya Airways", "Ethiopian Airlines"]
+    
+    for i, airline in enumerate(airlines_list[:4]):  # 4 flights per route
+        hour = random.choice([6, 8, 10, 12, 14, 16, 18, 20])
+        minute = random.choice([0, 15, 30, 45])
+        duration_h = random.randint(2, 8)
+        
+        flights.append({
+            'id': random.randint(10000, 99999),
+            'flight_number': f"{airline[:2].upper()}{random.randint(100, 999)}",
+            'airline': airline,
+            'from_city': from_city,
+            'to_city': to_city,
+            'departure_time': f"{hour:02d}:{minute:02d}",
+            'arrival_time': f"{(hour + duration_h) % 24:02d}:{minute:02d}",
+            'duration': f"{duration_h}h {random.choice([0,15,30,45])}m",
+            'date': date,
+            'price': price + random.randint(-20000, 20000) * i
+        })
+    
+    return flights
 
+# Store bookings
 bookings = []
 
 # ========================================
@@ -209,61 +190,15 @@ def search_flights():
     trip_type = data.get('trip_type', 'oneway')
     return_date = data.get('return_date')
     
-    # Search for outbound flights
-    outbound = []
-    for f in flights_list:
-        if f['from_city'] == from_city and f['to_city'] == to_city and f['date'] == date:
-            copy = f.copy()
-            if cabin == 'economy':
-                copy['price'] = copy['economy_price']
-            elif cabin == 'business':
-                copy['price'] = copy['business_price']
-            else:
-                copy['price'] = copy['first_price']
-            outbound.append(copy)
+    print(f"🔍 Searching: {from_city} → {to_city} on {date}")
     
-    # If no flights on exact date, show nearby dates
-    if not outbound:
-        for f in flights_list:
-            if f['from_city'] == from_city and f['to_city'] == to_city:
-                copy = f.copy()
-                if cabin == 'economy':
-                    copy['price'] = copy['economy_price']
-                elif cabin == 'business':
-                    copy['price'] = copy['business_price']
-                else:
-                    copy['price'] = copy['first_price']
-                outbound.append(copy)
-                if len(outbound) >= 15:
-                    break
+    # Generate outbound flights
+    outbound = generate_flights_for_route(from_city, to_city, date, cabin)
     
-    # Search for return flights
+    # Generate return flights if round trip
     return_flights = []
     if trip_type == 'round' and return_date:
-        for f in flights_list:
-            if f['to_city'] == from_city and f['from_city'] == to_city and f['date'] == return_date:
-                copy = f.copy()
-                if cabin == 'economy':
-                    copy['price'] = copy['economy_price']
-                elif cabin == 'business':
-                    copy['price'] = copy['business_price']
-                else:
-                    copy['price'] = copy['first_price']
-                return_flights.append(copy)
-        
-        if not return_flights:
-            for f in flights_list:
-                if f['to_city'] == from_city and f['from_city'] == to_city:
-                    copy = f.copy()
-                    if cabin == 'economy':
-                        copy['price'] = copy['economy_price']
-                    elif cabin == 'business':
-                        copy['price'] = copy['business_price']
-                    else:
-                        copy['price'] = copy['first_price']
-                    return_flights.append(copy)
-                    if len(return_flights) >= 15:
-                        break
+        return_flights = generate_flights_for_route(to_city, from_city, return_date, cabin)
     
     return jsonify({'outbound': outbound, 'return': return_flights})
 
@@ -279,33 +214,8 @@ def multi_city_search():
         to_city = segment.get('to')
         date = segment.get('date')
         
-        segment_results = []
-        for f in flights_list:
-            if f['from_city'] == from_city and f['to_city'] == to_city and f['date'] == date:
-                copy = f.copy()
-                if cabin == 'economy':
-                    copy['price'] = copy['economy_price']
-                elif cabin == 'business':
-                    copy['price'] = copy['business_price']
-                else:
-                    copy['price'] = copy['first_price']
-                segment_results.append(copy)
-        
-        if not segment_results:
-            for f in flights_list:
-                if f['from_city'] == from_city and f['to_city'] == to_city:
-                    copy = f.copy()
-                    if cabin == 'economy':
-                        copy['price'] = copy['economy_price']
-                    elif cabin == 'business':
-                        copy['price'] = copy['business_price']
-                    else:
-                        copy['price'] = copy['first_price']
-                    segment_results.append(copy)
-                    if len(segment_results) >= 8:
-                        break
-        
-        results.append(segment_results)
+        flights = generate_flights_for_route(from_city, to_city, date, cabin)
+        results.append(flights)
     
     return jsonify(results)
 
@@ -339,13 +249,9 @@ if __name__ == '__main__':
     print("\n" + "="*60)
     print("✨ DOUBLE H CONCIERGE - LUXURY TRAVEL SYSTEM")
     print("="*60)
-    print(f"🌍 Cities: {len(cities)} worldwide (including Uganda!)")
-    print(f"✈️ Routes: {len(route_prices)} major routes")
-    print(f"💎 Airlines: {len(airlines)} premium carriers")
-    print(f"📅 Flights available: {len(flights_list)} (next 180 days)")
-    print(f"\n🇺🇬 Uganda routes included:")
-    print("   • Kampala → Dubai (₦320,000)")
-    print("   • Kampala → London (₦480,000)")
-    print("   • Kampala → Nairobi (₦95,000)")
-    print("\n🌐 Server running on port " + str(port))
+    print(f"🌍 Cities available: {len(cities)} worldwide")
+    print(f"✈️ Dynamic flight generation enabled")
+    print(f"🇺🇬 Uganda routes: Kampala (EBB), Entebbe (EBB)")
+    print("\n✅ ANY route you search will return flights!")
+    print("🌐 Server running on port " + str(port))
     app.run(host='0.0.0.0', port=port)
